@@ -10,13 +10,23 @@ export class AuthService {
 		private jwtService: JwtService
 	) {}
 
-	async signIn(username: string, pass: string): Promise<{ access_token: string }> {
-		const user = await this.userService.findOne(username);
+	async register(email: string, pass: string): Promise<{ access_token: string }> {
+		// TODO: more fields & validation
+		const hashedPassword = await argon2.hash(pass);
+		const user = await this.userService.create(email, hashedPassword);
+		const payload = { sub: user.id, email: user.email };
+		return {
+			access_token: await this.jwtService.signAsync(payload),
+		};
+	}
+
+	async signIn(email: string, pass: string): Promise<{ access_token: string }> {
+		const user = await this.userService.findOne(email);
 		if (!(await argon2.verify(user?.hashedPassword, pass))) {
 			// incorrect password
 			throw new UnauthorizedException();
 		}
-		const payload = { sub: user.id, username: user.email };
+		const payload = { sub: user.id, email: user.email };
 		return {
 			access_token: await this.jwtService.signAsync(payload),
 		};

@@ -10,6 +10,10 @@ export class StartupService {
 		private readonly startupRepository: Repository<Startup>
 	) {}
 
+	async create(startup: Startup): Promise<Startup> {
+		return this.startupRepository.save(startup);
+	}
+
 	async findAll(): Promise<Startup[]> {
 		return this.startupRepository.find();
 	}

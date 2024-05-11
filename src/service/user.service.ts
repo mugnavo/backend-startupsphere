@@ -10,6 +10,14 @@ export class UserService {
 		private readonly userRepository: Repository<User>
 	) {}
 
+	async create(email: string, hashedPassword: string): Promise<User> {
+		// TODO: more fields, proper constructor & getters/setters
+		const user = new User();
+		user.email = email;
+		user.hashedPassword = hashedPassword;
+		return this.userRepository.save(user);
+	}
+
 	async findAll(): Promise<User[]> {
 		return this.userRepository.find();
 	}
