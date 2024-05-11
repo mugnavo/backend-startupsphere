@@ -17,4 +17,10 @@ export class ViewController {
 	findAllByStartupId(@Param("startupId") startupId: number) {
 		return this.viewService.findAllByStartupId(startupId);
 	}
+
+	@HttpCode(HttpStatus.OK)
+	@Get("/")
+	getAll() {
+		return this.viewService.findAll();
+	}
 }

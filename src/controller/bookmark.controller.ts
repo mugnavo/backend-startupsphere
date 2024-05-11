@@ -12,6 +12,12 @@ export class BookmarkController {
 		return this.bookmarkService.findAll();
 	}
 
+	@HttpCode(HttpStatus.OK)
+	@Get("/:userId/:startupId")
+	findOneByUserIdAndStartupId(@Param("userId") userId: number, @Param("startupId") startupId: number) {
+		return this.bookmarkService.findOneByUserIdAndStartupId(userId, startupId);
+	}
+
 	@HttpCode(HttpStatus.CREATED)
 	@Post("/")
 	create(@Body() bookmark: Bookmark) {

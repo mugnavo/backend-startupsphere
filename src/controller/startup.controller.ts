@@ -14,7 +14,7 @@ export class StartupController {
 
 	@HttpCode(HttpStatus.OK)
 	@Get("/:startupId")
-	getOneById(@Param() startupId: number) {
+	getOneById(@Param("startupId") startupId: number) {
 		return this.startupService.findOneById(startupId);
 	}
 
@@ -26,13 +26,13 @@ export class StartupController {
 
 	@HttpCode(HttpStatus.OK)
 	@Put("/:startupId")
-	update(@Param() startupId: number, @Body() startup: Startup) {
+	update(@Param("startupId") startupId: number, @Body() startup: Startup) {
 		return this.startupService.update(startupId, startup);
 	}
 
 	@HttpCode(HttpStatus.GONE)
 	@Delete("/:startupId")
-	delete(@Param() startupId: number) {
+	delete(@Param("startupId") startupId: number) {
 		return this.startupService.remove(startupId);
 	}
 }

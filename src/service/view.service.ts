@@ -17,4 +17,8 @@ export class ViewService {
 	async findAllByStartupId(startupId: number): Promise<View[]> {
 		return this.viewRepository.find({ where: { startup: { id: startupId } } });
 	}
+
+	async findAll(): Promise<View[]> {
+		return this.viewRepository.find();
+	}
 }
