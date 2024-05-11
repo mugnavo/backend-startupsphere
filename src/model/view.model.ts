@@ -1,6 +1,6 @@
-import { Column, Entity, ManyToOne, JoinColumn, PrimaryGeneratedColumn } from "typeorm";
-import { User } from "./user.model";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Startup } from "./startup.model";
+import { User } from "./user.model";
 
 @Entity()
 export class View {

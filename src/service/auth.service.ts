@@ -19,13 +19,7 @@ export class AuthService {
 	): Promise<{ access_token: string }> {
 		// TODO: more fields & validation
 		const hashedPassword = await argon2.hash(pass);
-		const user = await this.userService.create(
-			email,
-			hashedPassword,
-			firstName,
-			lastName,
-			location
-		);
+		const user = await this.userService.create(email, hashedPassword, firstName, lastName, location);
 		const payload = { id: user.id, email: user.email };
 		return {
 			access_token: await this.jwtService.signAsync(payload),

@@ -17,17 +17,7 @@ export class UserService {
 		lastName: string,
 		location: string
 	): Promise<User> {
-		const user = new User(
-			undefined,
-			email,
-			hashedPassword,
-			"",
-			firstName,
-			lastName,
-			location,
-			false,
-			undefined
-		);
+		const user = new User(undefined, email, hashedPassword, "", firstName, lastName, location, false, undefined);
 		return this.userRepository.save(user);
 	}
 

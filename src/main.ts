@@ -10,9 +10,7 @@ async function bootstrap() {
 	await SwaggerModule.loadPluginMetadata(metadata); // <-- here
 	const config = new DocumentBuilder()
 		.setTitle("StartupSphere API")
-		.setDescription(
-			"API documentation for StartupSphere, the 3D mapping platform for startup ecosystems."
-		)
+		.setDescription("API documentation for StartupSphere, the 3D mapping platform for startup ecosystems.")
 		.setVersion("1.0")
 		.build();
 	const document = SwaggerModule.createDocument(app, config);
