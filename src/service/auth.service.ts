@@ -20,7 +20,7 @@ export class AuthService {
 		};
 	}
 
-	async signIn(email: string, pass: string): Promise<{ access_token: string }> {
+	async login(email: string, pass: string): Promise<{ access_token: string }> {
 		const user = await this.userService.findOne(email);
 		if (!(await argon2.verify(user?.hashedPassword, pass))) {
 			// incorrect password
