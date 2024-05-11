@@ -25,7 +25,7 @@ export class StartupController {
 	@HttpCode(HttpStatus.OK)
 	@Get("/:startupId")
 	getOneById(@Param() startupId: number) {
-		return this.startupService.findOneBy(startupId);
+		return this.startupService.findOneById(startupId);
 	}
 
 	@HttpCode(HttpStatus.CREATED)

@@ -30,15 +30,15 @@ export class User {
 	createdAt: Date;
 
 	constructor(
-		id: number,
+		id: number | undefined,
 		email: string,
-		hashedPassword: string,
+		hashedPassword: string | undefined,
 		avatarUrl: string,
 		firstName: string,
 		lastName: string,
 		location: string,
 		moderator: boolean,
-		createdAt: Date
+		createdAt: Date | undefined
 	) {
 		this.id = id;
 		this.email = email;

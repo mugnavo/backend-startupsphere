@@ -18,7 +18,7 @@ export class StartupService {
 		return this.startupRepository.find();
 	}
 
-	async findOneBy(id: number): Promise<Startup | null> {
+	async findOneById(id: number): Promise<Startup | null> {
 		return this.startupRepository.findOneBy({ id });
 	}
 
@@ -26,7 +26,7 @@ export class StartupService {
 		const existingStartup = await this.startupRepository.findOneBy({ id });
 
 		if (!existingStartup) {
-			throw new NotFoundException("User not found");
+			throw new NotFoundException("Startup not found");
 		}
 		return this.startupRepository.save({ ...existingStartup, ...startupData });
 	}
