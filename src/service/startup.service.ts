@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Startup } from "src/model/startup.model";
 import { Repository } from "typeorm";
@@ -20,6 +20,15 @@ export class StartupService {
 
 	async findOneBy(id: number): Promise<Startup | null> {
 		return this.startupRepository.findOneBy({ id });
+	}
+
+	async update(id: number, startupData: Partial<Startup>): Promise<Startup> {
+		const existingStartup = await this.startupRepository.findOneBy({ id });
+
+		if (!existingStartup) {
+			throw new NotFoundException("User not found");
+		}
+		return this.startupRepository.save({ ...existingStartup, ...startupData });
 	}
 
 	async remove(id: number): Promise<void> {
