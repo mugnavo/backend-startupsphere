@@ -1,7 +1,12 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { AuthModule } from "./auth/auth.module";
+
+import { AuthGuard } from "./auth/auth.guard";
+import { AuthController } from "./controller/auth.controller";
+import { StartupController } from "./controller/startup.controller";
+import { Startup } from "./model/startup.model";
+import { User } from "./model/user.model";
 
 @Module({
 	imports: [
@@ -13,11 +18,15 @@ import { AuthModule } from "./auth/auth.module";
 			password: process.env.PGPASSWORD,
 			database: process.env.PGDATABASE,
 			synchronize: process.env.NODE_ENV !== "production",
-			entities: [],
+			entities: [User, Startup],
 		}),
-		AuthModule,
 	],
-	controllers: [],
-	providers: [],
+	controllers: [AuthController, StartupController],
+	providers: [
+		{
+			provide: "APP_GUARD",
+			useClass: AuthGuard,
+		},
+	],
 })
 export class AppModule {}
