@@ -1,9 +1,12 @@
-import { Column, Entity, ManyToOne, JoinColumn } from "typeorm";
+import { Column, Entity, ManyToOne, JoinColumn, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./user.model";
 import { Startup } from "./startup.model";
 
 @Entity()
 export class View {
+	@PrimaryGeneratedColumn()
+	id: number;
+
 	@ManyToOne(() => User)
 	@JoinColumn({ name: "user_id" })
 	user: User;
