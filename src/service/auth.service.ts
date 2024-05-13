@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import argon2 from "argon2";
 import { jwtConstants } from "src/auth/constants";
+import { AuthResponse } from "src/dto/auth.dto";
 import { UserService } from "./user.service";
 
 @Injectable()
@@ -17,7 +18,7 @@ export class AuthService {
 		firstName: string,
 		lastName: string,
 		location: string
-	): Promise<{ access_token: string }> {
+	): Promise<AuthResponse> {
 		// TODO: more fields & validation
 		const hashedPassword = await argon2.hash(pass);
 		const user = await this.userService.create(email, hashedPassword, firstName, lastName, location);
@@ -28,7 +29,7 @@ export class AuthService {
 		};
 	}
 
-	async login(email: string, pass: string): Promise<{ access_token?: string; error?: string }> {
+	async login(email: string, pass: string): Promise<AuthResponse> {
 		const user = await this.userService.findOne(email);
 		if (!user) {
 			return {
