@@ -28,7 +28,7 @@ export class User {
 	@Column()
 	moderator: boolean;
 
-	@Column()
+	@Column({ type: "timestamp", default: () => "now()" })
 	createdAt: Date;
 
 	constructor(

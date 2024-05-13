@@ -1,6 +1,7 @@
-import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import argon2 from "argon2";
+import { jwtConstants } from "src/auth/constants";
 import { UserService } from "./user.service";
 
 @Injectable()
@@ -23,20 +24,26 @@ export class AuthService {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const { hashedPassword: _, ...payload } = user;
 		return {
-			access_token: await this.jwtService.signAsync(payload),
+			access_token: await this.jwtService.signAsync(payload, { secret: jwtConstants.secret }),
 		};
 	}
 
-	async login(email: string, pass: string): Promise<{ access_token: string }> {
+	async login(email: string, pass: string): Promise<{ access_token?: string; error?: string }> {
 		const user = await this.userService.findOne(email);
+		if (!user) {
+			return {
+				error: "Invalid email or password",
+			};
+		}
 		if (!(await argon2.verify(user?.hashedPassword, pass))) {
-			// incorrect password
-			throw new UnauthorizedException();
+			return {
+				error: "Invalid email or password",
+			};
 		}
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const { hashedPassword: _, ...payload } = user;
 		return {
-			access_token: await this.jwtService.signAsync(payload),
+			access_token: await this.jwtService.signAsync(payload, { secret: jwtConstants.secret }),
 		};
 	}
 }

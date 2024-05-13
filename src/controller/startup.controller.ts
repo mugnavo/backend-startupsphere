@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put } from "@nestjs/common";
+import { Public } from "src/auth/constants";
 import { Startup } from "src/model/startup.model";
 import { StartupService } from "src/service/startup.service";
 
@@ -6,12 +7,14 @@ import { StartupService } from "src/service/startup.service";
 export class StartupController {
 	constructor(private readonly startupService: StartupService) {}
 
+	@Public()
 	@HttpCode(HttpStatus.OK)
 	@Get("/")
 	getAll() {
 		return this.startupService.findAll();
 	}
 
+	@Public()
 	@HttpCode(HttpStatus.OK)
 	@Get("/:startupId")
 	getOneById(@Param("startupId") startupId: number) {
