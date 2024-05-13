@@ -1,26 +1,28 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
+import { JwtModule, JwtService } from "@nestjs/jwt";
 import { TypeOrmModule } from "@nestjs/typeorm";
-
-import { JwtService } from "@nestjs/jwt";
 import { DataSource } from "typeorm";
+
 import { AuthGuard } from "./auth/auth.guard";
+import { jwtConstants } from "./auth/constants";
 import { AuthController } from "./controller/auth.controller";
-import { StartupController } from "./controller/startup.controller";
 import { BookmarkController } from "./controller/bookmark.controller";
 import { LikeController } from "./controller/like.controller";
+import { StartupController } from "./controller/startup.controller";
 import { ViewController } from "./controller/view.controller";
-import { Startup } from "./model/startup.model";
-import { User } from "./model/user.model";
 import { Bookmark } from "./model/bookmark.model";
 import { Like } from "./model/like.model";
+import { Startup } from "./model/startup.model";
+import { User } from "./model/user.model";
 import { View } from "./model/view.model";
 import { AuthService } from "./service/auth.service";
-import { StartupService } from "./service/startup.service";
-import { UserService } from "./service/user.service";
 import { BookmarkService } from "./service/bookmark.service";
 import { LikeService } from "./service/like.service";
+import { StartupService } from "./service/startup.service";
+import { UserService } from "./service/user.service";
 import { ViewService } from "./service/view.service";
+
 @Module({
 	imports: [
 		ConfigModule.forRoot(),
@@ -31,6 +33,11 @@ import { ViewService } from "./service/view.service";
 			entities: [User, Startup, Bookmark, Like, View],
 		}),
 		TypeOrmModule.forFeature([User, Startup, Bookmark, Like, View]),
+		JwtModule.register({
+			global: true,
+			secret: jwtConstants.secret,
+			signOptions: { expiresIn: "60s" },
+		}),
 	],
 	controllers: [AuthController, StartupController, BookmarkController, LikeController, ViewController],
 	providers: [
