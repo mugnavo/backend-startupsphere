@@ -20,7 +20,8 @@ export class AuthService {
 		// TODO: more fields & validation
 		const hashedPassword = await argon2.hash(pass);
 		const user = await this.userService.create(email, hashedPassword, firstName, lastName, location);
-		const payload = { id: user.id, email: user.email };
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { hashedPassword: _, ...payload } = user;
 		return {
 			access_token: await this.jwtService.signAsync(payload),
 		};
@@ -32,7 +33,8 @@ export class AuthService {
 			// incorrect password
 			throw new UnauthorizedException();
 		}
-		const payload = { sub: user.id, email: user.email };
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { hashedPassword: _, ...payload } = user;
 		return {
 			access_token: await this.jwtService.signAsync(payload),
 		};
