@@ -1,3 +1,4 @@
+import { ApiHideProperty } from "@nestjs/swagger";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -8,6 +9,7 @@ export class User {
 	@Column()
 	email: string;
 
+	@ApiHideProperty()
 	@Column()
 	hashedPassword: string;
 
