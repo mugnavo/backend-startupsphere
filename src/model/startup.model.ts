@@ -11,31 +11,31 @@ export class Startup {
 	@Column()
 	description: string;
 
-	@Column()
+	@Column({ name: "location_lat", type: "decimal", precision: 20, scale: 16 })
 	locationLat: number;
 
-	@Column()
+	@Column({ name: "location_lng", type: "decimal", precision: 20, scale: 16 })
 	locationLng: number;
 
-	@Column()
+	@Column({ name: "location_name" })
 	locationName: string;
 
-	@Column()
+	@Column({ name: "founder_name" })
 	founderName: string;
 
-	@Column()
+	@Column({ name: "website_url" })
 	websiteUrl: string;
 
-	@Column()
+	@Column({ name: "logo_url" })
 	logoUrl: string;
 
 	@Column()
 	categories: string;
 
-	@Column()
+	@Column({ name: "founded_date" })
 	foundedDate: Date;
 
-	@Column()
+	@Column({ name: "contact_info" })
 	contactInfo: string;
 
 	@Column()

@@ -10,16 +10,16 @@ export class User {
 	email: string;
 
 	@ApiHideProperty()
-	@Column()
+	@Column({ name: "hashed_password" })
 	hashedPassword: string;
 
 	@Column()
 	avatarUrl: string;
 
-	@Column()
+	@Column({ name: "first_name" })
 	firstName: string;
 
-	@Column()
+	@Column({ name: "last_name" })
 	lastName: string;
 
 	@Column()
@@ -28,7 +28,7 @@ export class User {
 	@Column()
 	moderator: boolean;
 
-	@Column({ type: "timestamp", default: () => "now()" })
+	@Column({ name: "created_at", type: "timestamp", default: () => "now()" })
 	createdAt: Date;
 
 	constructor(
