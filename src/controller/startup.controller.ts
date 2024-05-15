@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put } from "@nestjs/common";
 import { Public } from "src/auth/constants";
-import { Startup } from "src/model/startup.model";
+import { StartupRequest } from "src/dto/startup.dto";
 import { StartupService } from "src/service/startup.service";
 
 @Controller("/startups")
@@ -23,13 +23,13 @@ export class StartupController {
 
 	@HttpCode(HttpStatus.CREATED)
 	@Post("/")
-	create(@Body() startup: Startup) {
+	create(@Body() startup: StartupRequest) {
 		return this.startupService.create(startup);
 	}
 
 	@HttpCode(HttpStatus.OK)
 	@Put("/:startupId")
-	update(@Param("startupId") startupId: number, @Body() startup: Startup) {
+	update(@Param("startupId") startupId: number, @Body() startup: StartupRequest) {
 		return this.startupService.update(startupId, startup);
 	}
 

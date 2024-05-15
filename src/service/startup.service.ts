@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { StartupRequest } from "src/dto/startup.dto";
 import { Startup } from "src/model/startup.model";
 import { Repository } from "typeorm";
 
@@ -10,7 +11,7 @@ export class StartupService {
 		private readonly startupRepository: Repository<Startup>
 	) {}
 
-	async create(startup: Startup): Promise<Startup> {
+	async create(startup: StartupRequest): Promise<Startup> {
 		return this.startupRepository.save(startup);
 	}
 
@@ -22,7 +23,7 @@ export class StartupService {
 		return this.startupRepository.findOneBy({ id });
 	}
 
-	async update(id: number, startupData: Partial<Startup>): Promise<Startup> {
+	async update(id: number, startupData: Partial<StartupRequest>): Promise<Startup> {
 		const existingStartup = await this.startupRepository.findOneBy({ id });
 
 		if (!existingStartup) {
