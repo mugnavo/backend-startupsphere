@@ -12,16 +12,10 @@ export class AuthService {
 		private jwtService: JwtService
 	) {}
 
-	async register(
-		email: string,
-		pass: string,
-		firstName: string,
-		lastName: string,
-		location: string
-	): Promise<AuthResponse> {
+	async register(email: string, pass: string, firstName: string, lastName: string): Promise<AuthResponse> {
 		// TODO: more fields & validation
 		const hashedPassword = await argon2.hash(pass);
-		const user = await this.userService.create(email, hashedPassword, firstName, lastName, location);
+		const user = await this.userService.create(email, hashedPassword, firstName, lastName);
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const { hashedPassword: _, ...payload } = user;
 		return {

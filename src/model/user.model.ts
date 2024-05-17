@@ -23,9 +23,6 @@ export class User {
 	lastName: string;
 
 	@Column()
-	location: string;
-
-	@Column()
 	moderator: boolean;
 
 	@Column({ name: "created_at", type: "timestamp", default: () => "now()" })
@@ -38,7 +35,6 @@ export class User {
 		avatarUrl: string,
 		firstName: string,
 		lastName: string,
-		location: string,
 		moderator: boolean,
 		createdAt: Date | undefined
 	) {
@@ -48,7 +44,6 @@ export class User {
 		this.avatarUrl = avatarUrl;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.location = location;
 		this.moderator = moderator;
 		this.createdAt = createdAt;
 	}
@@ -75,10 +70,6 @@ export class User {
 
 	getLastName(): string {
 		return this.lastName;
-	}
-
-	getLocation(): string {
-		return this.location;
 	}
 
 	isModerator(): boolean {
@@ -111,10 +102,6 @@ export class User {
 
 	setLastName(lastName: string): void {
 		this.lastName = lastName;
-	}
-
-	setLocation(location: string): void {
-		this.location = location;
 	}
 
 	setModerator(moderator: boolean): void {
