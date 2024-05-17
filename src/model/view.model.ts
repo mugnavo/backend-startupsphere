@@ -6,8 +6,8 @@ export class View {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: "user_id", nullable: true, default: null })
-	user_id: number;
+	@Column({ name: "user_id", nullable: true, default: null, type: "int8" })
+	user_id: number | null;
 
 	@ManyToOne(() => Startup)
 	@JoinColumn({ name: "startup_id" })
