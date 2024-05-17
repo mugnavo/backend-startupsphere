@@ -1,15 +1,13 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Startup } from "./startup.model";
-import { User } from "./user.model";
 
 @Entity()
 export class View {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@ManyToOne(() => User)
-	@JoinColumn({ name: "user_id" })
-	user: User;
+	@Column({ name: "user_id", nullable: true, default: null })
+	user_id: number;
 
 	@ManyToOne(() => Startup)
 	@JoinColumn({ name: "startup_id" })

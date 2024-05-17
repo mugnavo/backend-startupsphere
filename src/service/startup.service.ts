@@ -32,6 +32,26 @@ export class StartupService {
 		return this.startupRepository.save({ ...existingStartup, ...startupData });
 	}
 
+	async incrementLike(id: number): Promise<void> {
+		await this.startupRepository.increment({ id }, "likes", 1);
+	}
+
+	async decrementLike(id: number): Promise<void> {
+		await this.startupRepository.decrement({ id }, "likes", 1);
+	}
+
+	async incrementBookmark(id: number): Promise<void> {
+		await this.startupRepository.increment({ id }, "bookmarks", 1);
+	}
+
+	async decrementBookmark(id: number): Promise<void> {
+		await this.startupRepository.decrement({ id }, "bookmarks", 1);
+	}
+
+	async incrementView(id: number): Promise<void> {
+		await this.startupRepository.increment({ id }, "views", 1);
+	}
+
 	async remove(id: number): Promise<void> {
 		await this.startupRepository.delete(id);
 	}
