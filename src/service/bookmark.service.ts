@@ -23,6 +23,10 @@ export class BookmarkService {
 		return this.bookmarkRepository.find();
 	}
 
+	async findAllByUserId(userId: number): Promise<Bookmark[]> {
+		return this.bookmarkRepository.find({ where: { user: { id: userId } } });
+	}
+
 	async findOneByUserIdAndStartupId(userId: number, startupId: number): Promise<Bookmark | null> {
 		return this.bookmarkRepository.findOne({
 			where: { user: { id: userId }, startup: { id: startupId } },

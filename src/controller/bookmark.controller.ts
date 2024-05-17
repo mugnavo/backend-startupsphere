@@ -19,6 +19,12 @@ export class BookmarkController {
 		return this.bookmarkService.findOneByUserIdAndStartupId(userId, startupId);
 	}
 
+	@HttpCode(HttpStatus.OK)
+	@Get("/:userId")
+	findAllByUserId(@Param("userId") userId: number) {
+		return this.bookmarkService.findAllByUserId(userId);
+	}
+
 	@Public()
 	@HttpCode(HttpStatus.OK)
 	@Get("/:startupId")
