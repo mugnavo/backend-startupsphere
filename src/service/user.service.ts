@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "src/model/user.model";
 import { Repository } from "typeorm";
@@ -10,12 +10,18 @@ export class UserService {
 		private readonly userRepository: Repository<User>
 	) {}
 
-	async create(email: string, hashedPassword: string): Promise<User> {
-		// TODO: more fields, proper constructor & getters/setters
-		const user = new User();
-		user.email = email;
-		user.hashedPassword = hashedPassword;
+	async create(email: string, hashedPassword: string, firstName: string, lastName: string): Promise<User> {
+		const user = new User(undefined, email, hashedPassword, "", firstName, lastName, false, undefined);
 		return this.userRepository.save(user);
+	}
+
+	async update(id: number, userData: Partial<User>): Promise<User> {
+		const existingUser = await this.userRepository.findOneBy({ id });
+
+		if (!existingUser) {
+			throw new NotFoundException("User not found");
+		}
+		return this.userRepository.save({ ...existingUser, ...userData });
 	}
 
 	async findAll(): Promise<User[]> {

@@ -1,3 +1,4 @@
+import { ApiHideProperty } from "@nestjs/swagger";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -8,37 +9,34 @@ export class User {
 	@Column()
 	email: string;
 
-	@Column()
+	@ApiHideProperty()
+	@Column({ name: "hashed_password" })
 	hashedPassword: string;
 
 	@Column()
 	avatarUrl: string;
 
-	@Column()
+	@Column({ name: "first_name" })
 	firstName: string;
 
-	@Column()
+	@Column({ name: "last_name" })
 	lastName: string;
-
-	@Column()
-	location: string;
 
 	@Column()
 	moderator: boolean;
 
-	@Column()
+	@Column({ name: "created_at", type: "timestamp", default: () => "now()" })
 	createdAt: Date;
 
 	constructor(
-		id: number,
+		id: number | undefined,
 		email: string,
-		hashedPassword: string,
+		hashedPassword: string | undefined,
 		avatarUrl: string,
 		firstName: string,
 		lastName: string,
-		location: string,
 		moderator: boolean,
-		createdAt: Date
+		createdAt: Date | undefined
 	) {
 		this.id = id;
 		this.email = email;
@@ -46,7 +44,6 @@ export class User {
 		this.avatarUrl = avatarUrl;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.location = location;
 		this.moderator = moderator;
 		this.createdAt = createdAt;
 	}
@@ -73,10 +70,6 @@ export class User {
 
 	getLastName(): string {
 		return this.lastName;
-	}
-
-	getLocation(): string {
-		return this.location;
 	}
 
 	isModerator(): boolean {
@@ -109,10 +102,6 @@ export class User {
 
 	setLastName(lastName: string): void {
 		this.lastName = lastName;
-	}
-
-	setLocation(location: string): void {
-		this.location = location;
 	}
 
 	setModerator(moderator: boolean): void {

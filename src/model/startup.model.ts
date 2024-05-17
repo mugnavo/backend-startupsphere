@@ -11,40 +11,40 @@ export class Startup {
 	@Column()
 	description: string;
 
-	@Column()
+	@Column({ name: "location_lat", type: "decimal", precision: 20, scale: 16 })
 	locationLat: number;
 
-	@Column()
+	@Column({ name: "location_lng", type: "decimal", precision: 20, scale: 16 })
 	locationLng: number;
 
-	@Column()
+	@Column({ name: "location_name" })
 	locationName: string;
 
-	@Column()
+	@Column({ name: "founder_name" })
 	founderName: string;
 
-	@Column()
+	@Column({ name: "website_url" })
 	websiteUrl: string;
 
-	@Column()
+	@Column({ name: "logo_url" })
 	logoUrl: string;
 
-	@Column()
-	categories: string;
+	@Column({ type: "text", array: true })
+	categories: string[];
 
-	@Column()
+	@Column({ name: "founded_date" })
 	foundedDate: Date;
 
-	@Column()
+	@Column({ name: "contact_info" })
 	contactInfo: string;
 
-	@Column()
+	@Column({ default: 0 })
 	likes: number;
 
-	@Column()
+	@Column({ default: 0 })
 	bookmarks: number;
 
-	@Column()
+	@Column({ default: 0 })
 	views: number;
 
 	constructor(
@@ -57,7 +57,7 @@ export class Startup {
 		founderName: string,
 		websiteUrl: string,
 		logoUrl: string,
-		categories: string,
+		categories: string[],
 		foundedDate: Date,
 		contactInfo: string,
 		likes: number,
@@ -153,11 +153,11 @@ export class Startup {
 		this.logoUrl = value;
 	}
 
-	getCategories(): string {
+	getCategories(): string[] {
 		return this.categories;
 	}
 
-	setcategories(value: string) {
+	setCategories(value: string[]) {
 		this.categories = value;
 	}
 

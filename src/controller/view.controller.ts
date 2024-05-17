@@ -1,4 +1,5 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post } from "@nestjs/common";
+import { Public } from "src/auth/constants";
 import { View } from "src/model/view.model";
 import { ViewService } from "src/service/view.service";
 
@@ -6,6 +7,7 @@ import { ViewService } from "src/service/view.service";
 export class ViewController {
 	constructor(private readonly viewService: ViewService) {}
 
+	@Public()
 	@HttpCode(HttpStatus.CREATED)
 	@Post("/")
 	create(@Body() view: View) {
@@ -16,5 +18,11 @@ export class ViewController {
 	@Get("/:startupId")
 	findAllByStartupId(@Param("startupId") startupId: number) {
 		return this.viewService.findAllByStartupId(startupId);
+	}
+
+	@HttpCode(HttpStatus.OK)
+	@Get("/")
+	getAll() {
+		return this.viewService.findAll();
 	}
 }

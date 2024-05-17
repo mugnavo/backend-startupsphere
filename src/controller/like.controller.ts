@@ -20,10 +20,7 @@ export class LikeController {
 
 	@HttpCode(HttpStatus.OK)
 	@Get("/:userId/:startupId")
-	findOneByUserIdAndStartupId(
-		@Param("userId") userId: number,
-		@Param("startupId") startupId: number
-	) {
+	findOneByUserIdAndStartupId(@Param("userId") userId: number, @Param("startupId") startupId: number) {
 		return this.likeService.findOneByUserIdAndStartupId(userId, startupId);
 	}
 }
