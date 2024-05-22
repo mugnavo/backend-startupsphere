@@ -19,6 +19,15 @@ export class ViewService {
 		await this.viewRepository.insert({ startup: { id: view.startupId }, user_id: view.userId });
 	}
 
+	async findRecentsByUserId(userId: number): Promise<View[]> {
+		return this.viewRepository.find({
+			where: { user_id: userId },
+			order: { timestamp: "DESC" },
+			take: 20,
+			relations: ["startup"],
+		});
+	}
+
 	async findAllByStartupId(startupId: number): Promise<View[]> {
 		return this.viewRepository.find({ where: { startup: { id: startupId } } });
 	}

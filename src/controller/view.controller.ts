@@ -14,6 +14,12 @@ export class ViewController {
 		return this.viewService.create(view);
 	}
 
+	@HttpCode(HttpStatus.OK)
+	@Get("/:userId")
+	findRecentsByUserId(@Param("userId") userId: number) {
+		return this.viewService.findRecentsByUserId(userId);
+	}
+
 	@Public()
 	@HttpCode(HttpStatus.OK)
 	@Get("/:startupId")
