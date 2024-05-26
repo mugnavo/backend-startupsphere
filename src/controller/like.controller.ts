@@ -7,6 +7,12 @@ import { LikeService } from "src/service/like.service";
 export class LikeController {
 	constructor(private readonly likeService: LikeService) {}
 
+	@HttpCode(HttpStatus.OK)
+	@Get("/")
+	getAll() {
+		return this.likeService.findAll();
+	}
+
 	@HttpCode(HttpStatus.CREATED)
 	@Post("/")
 	create(@Body() like: CreateLikeRequest) {

@@ -14,6 +14,10 @@ export class LikeService {
 		private readonly startupService: StartupService
 	) {}
 
+	async findAll(): Promise<Like[]> {
+		return this.likeRepository.find();
+	}
+
 	async create(like: CreateBookmarkRequest): Promise<void> {
 		await this.startupService.incrementLike(like.startupId);
 		await this.likeRepository.insert({ startup: { id: like.startupId }, user: { id: like.userId } });
