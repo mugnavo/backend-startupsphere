@@ -93,7 +93,7 @@ export class Startup {
 		return this.name;
 	}
 
-	set(value: string) {
+	setName(value: string) {
 		this.name = value;
 	}
 
