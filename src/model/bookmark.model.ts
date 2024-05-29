@@ -15,6 +15,6 @@ export class Bookmark {
 	@JoinColumn({ name: "startup_id" })
 	startup: Startup;
 
-	@Column({ type: "timestamp" })
+	@Column({ type: "timestamp", default: () => "now()" })
 	timestamp: Date;
 }

@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post } from "@nestjs/common";
-import { Bookmark } from "src/model/bookmark.model";
+import { Public } from "src/auth/constants";
+import { CreateBookmarkRequest } from "src/dto/startup.dto";
 import { BookmarkService } from "src/service/bookmark.service";
 
 @Controller("/bookmarks")
@@ -18,9 +19,22 @@ export class BookmarkController {
 		return this.bookmarkService.findOneByUserIdAndStartupId(userId, startupId);
 	}
 
+	@HttpCode(HttpStatus.OK)
+	@Get("/:userId")
+	findAllByUserId(@Param("userId") userId: number) {
+		return this.bookmarkService.findAllByUserId(userId);
+	}
+
+	@Public()
+	@HttpCode(HttpStatus.OK)
+	@Get("/:startupId")
+	findAllByStartupId(@Param("startupId") startupId: number) {
+		return this.bookmarkService.findAllByStartupId(startupId);
+	}
+
 	@HttpCode(HttpStatus.CREATED)
 	@Post("/")
-	create(@Body() bookmark: Bookmark) {
+	create(@Body() bookmark: CreateBookmarkRequest) {
 		return this.bookmarkService.create(bookmark);
 	}
 
