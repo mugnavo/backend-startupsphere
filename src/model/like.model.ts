@@ -11,7 +11,7 @@ export class Like {
 	@JoinColumn({ name: "user_id" })
 	user: User;
 
-	@ManyToOne(() => Startup)
+	@ManyToOne(() => Startup, { onDelete: "CASCADE" })
 	@JoinColumn({ name: "startup_id" })
 	startup: Startup;
 

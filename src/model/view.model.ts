@@ -9,7 +9,7 @@ export class View {
 	@Column({ name: "user_id", nullable: true, default: null, type: "int8" })
 	user_id: number | null;
 
-	@ManyToOne(() => Startup)
+	@ManyToOne(() => Startup, { onDelete: "CASCADE" })
 	@JoinColumn({ name: "startup_id" })
 	startup: Startup;
 
