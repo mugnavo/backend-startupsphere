@@ -22,6 +22,7 @@ import { LikeService } from "./service/like.service";
 import { StartupService } from "./service/startup.service";
 import { UserService } from "./service/user.service";
 import { ViewService } from "./service/view.service";
+import { AuditTrail } from "./model/audit.model";
 
 @Module({
 	imports: [
@@ -30,9 +31,9 @@ import { ViewService } from "./service/view.service";
 			type: "postgres",
 			url: process.env.DATABASE_URL,
 			synchronize: process.env.NODE_ENV !== "production",
-			entities: [User, Startup, Bookmark, Like, View],
+			entities: [User, Startup, Bookmark, Like, View, AuditTrail],
 		}),
-		TypeOrmModule.forFeature([User, Startup, Bookmark, Like, View]),
+		TypeOrmModule.forFeature([User, Startup, Bookmark, Like, View, AuditTrail]),
 		JwtModule.register({
 			global: true,
 			secret: jwtConstants.secret,
