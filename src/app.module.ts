@@ -27,6 +27,7 @@ import { ApiLog } from "./model/apilog.model";
 import { Metric } from "./model/metric.model";
 import { Report } from "./model/report.model";
 import { Investor } from "./model/investor.model";
+import { EntityManage } from "./model/entitymanage.model";
 
 @Module({
 	imports: [
@@ -35,9 +36,21 @@ import { Investor } from "./model/investor.model";
 			type: "postgres",
 			url: process.env.DATABASE_URL,
 			synchronize: process.env.NODE_ENV !== "production",
-			entities: [User, Startup, Bookmark, Like, View, AuditTrail, ApiLog, Metric, Report, Investor],
+			entities: [User, Startup, Bookmark, Like, View, AuditTrail, ApiLog, Metric, Report, Investor, EntityManage],
 		}),
-		TypeOrmModule.forFeature([User, Startup, Bookmark, Like, View, AuditTrail, ApiLog, Metric, Report, Investor]),
+		TypeOrmModule.forFeature([
+			User,
+			Startup,
+			Bookmark,
+			Like,
+			View,
+			AuditTrail,
+			ApiLog,
+			Metric,
+			Report,
+			Investor,
+			EntityManage,
+		]),
 		JwtModule.register({
 			global: true,
 			secret: jwtConstants.secret,
