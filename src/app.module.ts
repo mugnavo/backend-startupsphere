@@ -10,6 +10,7 @@ import { BookmarkController } from "./controller/bookmark.controller";
 import { EntityManageController } from "./controller/entitymanage.controller";
 import { InvestorController } from "./controller/investor.controller";
 import { LikeController } from "./controller/like.controller";
+import { ReportController } from "./controller/report.controller";
 import { StartupController } from "./controller/startup.controller";
 import { ViewController } from "./controller/view.controller";
 import { ApiLog } from "./model/apilog.model";
@@ -28,11 +29,10 @@ import { BookmarkService } from "./service/bookmark.service";
 import { EntityManageService } from "./service/entitymanage.service";
 import { InvestorService } from "./service/investor.service";
 import { LikeService } from "./service/like.service";
+import { ReportService } from "./service/report.service";
 import { StartupService } from "./service/startup.service";
 import { UserService } from "./service/user.service";
 import { ViewService } from "./service/view.service";
-import { ReportController } from "./controller/report.controller";
-import { ReportService } from "./service/report.service";
 
 @Module({
 	imports: [
@@ -70,7 +70,7 @@ import { ReportService } from "./service/report.service";
 		ViewController,
 		InvestorController,
 		ReportController,
-		
+		EntityManageController,
 	],
 	providers: [
 		AuthService,
@@ -81,6 +81,7 @@ import { ReportService } from "./service/report.service";
 		InvestorService,
 		ViewService,
 		ReportService,
+		EntityManageService,
 		JwtService,
 		{
 			provide: "APP_GUARD",
