@@ -31,6 +31,8 @@ import { LikeService } from "./service/like.service";
 import { StartupService } from "./service/startup.service";
 import { UserService } from "./service/user.service";
 import { ViewService } from "./service/view.service";
+import { ReportController } from "./controller/report.controller";
+import { ReportService } from "./service/report.service";
 
 @Module({
 	imports: [
@@ -67,6 +69,8 @@ import { ViewService } from "./service/view.service";
 		LikeController,
 		ViewController,
 		InvestorController,
+		ReportController,
+		
 	],
 	providers: [
 		AuthService,
@@ -76,6 +80,7 @@ import { ViewService } from "./service/view.service";
 		LikeService,
 		InvestorService,
 		ViewService,
+		ReportService,
 		JwtService,
 		{
 			provide: "APP_GUARD",
