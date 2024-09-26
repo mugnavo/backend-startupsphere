@@ -11,6 +11,7 @@ export class InvestorRequest {
 	websiteUrl: string;
 	logoUrl: string;
 	contactInfo: string;
+	managerId?: number;
 
 	//createViewRequest, createLikeRequest, createBookmarkRequest
 }

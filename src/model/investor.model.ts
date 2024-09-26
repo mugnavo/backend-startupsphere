@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "./user.model";
 
 @Entity()
 export class Investor {
@@ -19,6 +20,10 @@ export class Investor {
 
 	@Column()
 	total_funds: number;
+
+	@ManyToOne(() => User, { onDelete: "SET NULL", nullable: true })
+	@JoinColumn({ name: "manager_id" })
+	managerId?: number;
 
 	@Column({ name: "location_lat", type: "decimal", precision: 20, scale: 16 })
 	locationLat: number;

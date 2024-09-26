@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "./user.model";
 
 @Entity()
 export class Startup {
@@ -19,6 +20,19 @@ export class Startup {
 
 	@Column({ name: "location_name" })
 	locationName: string;
+
+	@Column()
+	capital: number;
+
+	@Column({ name: "funding_stage" })
+	fundingStage: string;
+
+	@Column({ name: "team_size" })
+	teamSize: number;
+
+	@ManyToOne(() => User, { onDelete: "SET NULL", nullable: true })
+	@JoinColumn({ name: "manager_id" })
+	managerId?: number;
 
 	@Column({ name: "founder_name" })
 	founderName: string;
