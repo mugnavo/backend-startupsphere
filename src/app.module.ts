@@ -7,7 +7,6 @@ import { AuthGuard } from "./auth/auth.guard";
 import { jwtConstants } from "./auth/constants";
 import { AuthController } from "./controller/auth.controller";
 import { BookmarkController } from "./controller/bookmark.controller";
-import { EntityManageController } from "./controller/entitymanage.controller";
 import { InvestorController } from "./controller/investor.controller";
 import { LikeController } from "./controller/like.controller";
 import { ReportController } from "./controller/report.controller";
@@ -16,7 +15,6 @@ import { ViewController } from "./controller/view.controller";
 import { ApiLog } from "./model/apilog.model";
 import { AuditTrail } from "./model/audit.model";
 import { Bookmark } from "./model/bookmark.model";
-import { EntityManage } from "./model/entitymanage.model";
 import { Investor } from "./model/investor.model";
 import { Like } from "./model/like.model";
 import { Metric } from "./model/metric.model";
@@ -41,21 +39,9 @@ import { ViewService } from "./service/view.service";
 			type: "postgres",
 			url: process.env.DATABASE_URL,
 			synchronize: process.env.NODE_ENV !== "production",
-			entities: [User, Startup, Bookmark, Like, View, AuditTrail, ApiLog, Metric, Report, Investor, EntityManage],
+			entities: [User, Startup, Bookmark, Like, View, AuditTrail, ApiLog, Metric, Report, Investor],
 		}),
-		TypeOrmModule.forFeature([
-			User,
-			Startup,
-			Bookmark,
-			Like,
-			View,
-			AuditTrail,
-			ApiLog,
-			Metric,
-			Report,
-			Investor,
-			EntityManage,
-		]),
+		TypeOrmModule.forFeature([User, Startup, Bookmark, Like, View, AuditTrail, ApiLog, Metric, Report, Investor]),
 		JwtModule.register({
 			global: true,
 			secret: jwtConstants.secret,
@@ -70,7 +56,6 @@ import { ViewService } from "./service/view.service";
 		ViewController,
 		InvestorController,
 		ReportController,
-		EntityManageController,
 	],
 	providers: [
 		AuthService,
