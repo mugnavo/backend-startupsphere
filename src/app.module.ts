@@ -37,7 +37,7 @@ import { ViewService } from "./service/view.service";
 		TypeOrmModule.forRoot({
 			type: "postgres",
 			url: process.env.DATABASE_URL,
-			synchronize: process.env.NODE_ENV !== "production",
+			synchronize: false,
 			entities: [User, Startup, Bookmark, Like, View, AuditTrail, ApiLog, Metric, Report, Investor],
 		}),
 		TypeOrmModule.forFeature([User, Startup, Bookmark, Like, View, AuditTrail, ApiLog, Metric, Report, Investor]),
