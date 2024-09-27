@@ -24,7 +24,6 @@ import { User } from "./model/user.model";
 import { View } from "./model/view.model";
 import { AuthService } from "./service/auth.service";
 import { BookmarkService } from "./service/bookmark.service";
-import { EntityManageService } from "./service/entitymanage.service";
 import { InvestorService } from "./service/investor.service";
 import { LikeService } from "./service/like.service";
 import { ReportService } from "./service/report.service";
@@ -66,7 +65,6 @@ import { ViewService } from "./service/view.service";
 		InvestorService,
 		ViewService,
 		ReportService,
-		EntityManageService,
 		JwtService,
 		{
 			provide: "APP_GUARD",
