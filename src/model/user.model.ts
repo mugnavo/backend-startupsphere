@@ -39,7 +39,8 @@ export class User {
 		firstName: string,
 		lastName: string,
 		moderator: boolean,
-		createdAt: Date | undefined
+		createdAt: Date | undefined,
+		role: string
 	) {
 		this.id = id;
 		this.email = email;
@@ -49,6 +50,7 @@ export class User {
 		this.lastName = lastName;
 		this.moderator = moderator;
 		this.createdAt = createdAt;
+		this.role = role;
 	}
 
 	getId(): number {
