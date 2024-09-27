@@ -25,7 +25,7 @@ export class User {
 	@Column()
 	moderator: boolean;
 
-	@Column()
+	@Column({ default: "member" })
 	role: string;
 
 	@Column({ name: "created_at", type: "timestamp", default: () => "now()" })
