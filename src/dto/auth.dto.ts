@@ -3,6 +3,7 @@ export class RegisterRequest {
 	password: string;
 	firstName: string;
 	lastName: string;
+	role: string;
 }
 
 export class LoginRequest {
