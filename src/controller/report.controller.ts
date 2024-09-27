@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Query } from "@nestjs/common";
 import { Public } from "src/auth/constants";
 import { ReportRequest } from "src/dto/report.dto";
 import { ReportService } from "src/service/report.service";
@@ -38,4 +38,10 @@ export class ReportController {
 	delete(@Param("reportId") reportId: number) {
 		return this.reportService.remove(reportId);
 	}
+
+	@HttpCode(HttpStatus.OK)
+    @Get("/user/:userId") // Get reports by user ID
+    getAllByUserId(@Param("userId") userId: number) {
+        return this.reportService.findAllByUserId(userId);
+    }
 }

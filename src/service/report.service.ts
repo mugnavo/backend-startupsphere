@@ -32,6 +32,10 @@ export class ReportService {
 		return this.reportRepository.findOneBy({ id });
 	}
 
+	async findAllByUserId(userId: number): Promise<Report[]> {
+        return this.reportRepository.find({ where: { generated_by: { id: userId } } });
+    }
+
 	async remove(id: number): Promise<void> {
 		await this.reportRepository.delete(id);
 	}
