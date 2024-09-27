@@ -10,6 +10,10 @@ export class StartupRequest {
 	categories: string[];
 	foundedDate: Date;
 	contactInfo: string;
+	managerId?: number;
+	capital: number;
+	fundingStage: string;
+	teamSize: number;
 }
 
 export class CreateViewRequest {
