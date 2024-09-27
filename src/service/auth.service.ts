@@ -41,4 +41,8 @@ export class AuthService {
 			access_token: await this.jwtService.signAsync(payload, { secret: jwtConstants.secret }),
 		};
 	}
+
+	async me(id: number) {
+		return this.userService.findOneById(id);
+	}
 }
