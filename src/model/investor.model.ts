@@ -43,5 +43,14 @@ export class Investor {
 	@Column({ name: "contact_info" })
 	contactInfo: string;
 
+	@Column({ default: 0 })
+	likes: number;
+
+	@Column({ default: 0 })
+	bookmarks: number;
+
+	@Column({ default: 0 })
+	views: number;
+
 	// TODO should we add likes, bookmarks, views?
 }

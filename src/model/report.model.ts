@@ -1,14 +1,12 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { User } from "./user.model";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Report {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@ManyToOne(() => User, { onDelete: "SET NULL" })
-	@JoinColumn({ name: "user_id" })
-	generated_by: User;
+	@Column({ name: "user_id", type: "int8" })
+	generated_by: number;
 
 	@Column()
 	name: string;

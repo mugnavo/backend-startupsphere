@@ -17,16 +17,19 @@ export class StartupRequest {
 }
 
 export class CreateViewRequest {
-	startupId: number;
+	startupId?: number;
+	investorId?: number;
 	userId: number | null;
 }
 
 export class CreateLikeRequest {
-	startupId: number;
+	startupId?: number;
+	investorId?: number;
 	userId: number;
 }
 
 export class CreateBookmarkRequest {
-	startupId: number;
+	startupId?: number;
+	investorId?: number;
 	userId: number;
 }

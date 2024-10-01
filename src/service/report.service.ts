@@ -33,7 +33,7 @@ export class ReportService {
 	}
 
 	async findAllByUserId(userId: number): Promise<Report[]> {
-		return this.reportRepository.find({ where: { generated_by: { id: userId } } });
+		return this.reportRepository.find({ where: { generated_by: userId } });
 	}
 
 	async remove(id: number): Promise<void> {

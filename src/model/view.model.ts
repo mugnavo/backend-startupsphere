@@ -1,4 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Investor } from "./investor.model";
 import { Startup } from "./startup.model";
 
 @Entity()
@@ -9,9 +10,13 @@ export class View {
 	@Column({ name: "user_id", nullable: true, default: null, type: "int8" })
 	user_id: number | null;
 
-	@ManyToOne(() => Startup, { onDelete: "CASCADE" })
+	@ManyToOne(() => Startup, { onDelete: "CASCADE", nullable: true })
 	@JoinColumn({ name: "startup_id" })
-	startup: Startup;
+	startup?: Startup;
+
+	@ManyToOne(() => Investor, { onDelete: "CASCADE", nullable: true })
+	@JoinColumn({ name: "startup_id" })
+	investor?: Investor;
 
 	@Column({ type: "timestamp", default: () => "now()" })
 	timestamp: Date;

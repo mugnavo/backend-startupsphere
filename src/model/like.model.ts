@@ -1,4 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Investor } from "./investor.model";
 import { Startup } from "./startup.model";
 import { User } from "./user.model";
 
@@ -11,9 +12,13 @@ export class Like {
 	@JoinColumn({ name: "user_id" })
 	user: User;
 
-	@ManyToOne(() => Startup, { onDelete: "CASCADE" })
+	@ManyToOne(() => Startup, { onDelete: "CASCADE", nullable: true })
 	@JoinColumn({ name: "startup_id" })
-	startup: Startup;
+	startup?: Startup;
+
+	@ManyToOne(() => Investor, { onDelete: "CASCADE", nullable: true })
+	@JoinColumn({ name: "startup_id" })
+	investor?: Investor;
 
 	@Column({ type: "timestamp", default: () => "now()" })
 	timestamp: Date;
