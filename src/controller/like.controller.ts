@@ -20,9 +20,15 @@ export class LikeController {
 	}
 
 	@HttpCode(HttpStatus.OK)
-	@Delete("/:userId/:startupId")
-	remove(@Param("userId") userId: number, @Param("startupId") startupId: number) {
-		return this.likeService.remove(userId, startupId);
+	@Delete("/:userId/startup/:startupId")
+	startupRemove(@Param("userId") userId: number, @Param("startupId") startupId: number) {
+		return this.likeService.startupRemove(userId, startupId);
+	}
+
+	@HttpCode(HttpStatus.OK)
+	@Delete("/:userId/investor/:investorId")
+	investorRemove(@Param("userId") userId: number, @Param("investorId") investorId: number) {
+		return this.likeService.investorRemove(userId, investorId);
 	}
 
 	@Public()
@@ -32,9 +38,22 @@ export class LikeController {
 		return this.likeService.findAllByStartupId(startupId);
 	}
 
+	@Public()
 	@HttpCode(HttpStatus.OK)
-	@Get("/:userId/:startupId")
+	@Get("/:investorId")
+	findAllByInvestorId(@Param("investorId") investorId: number) {
+		return this.likeService.findAllByInvestorId(investorId);
+	}
+
+	@HttpCode(HttpStatus.OK)
+	@Get("/:userId/startup/:startupId")
 	findOneByUserIdAndStartupId(@Param("userId") userId: number, @Param("startupId") startupId: number) {
 		return this.likeService.findOneByUserIdAndStartupId(userId, startupId);
+	}
+
+	@HttpCode(HttpStatus.OK)
+	@Get("/:userId/investor/:investorId")
+	findOneByUserIdAndInvestorId(@Param("userId") userId: number, @Param("investorId") investorId: number) {
+		return this.likeService.findOneByUserIdAndInvestorId(userId, investorId);
 	}
 }

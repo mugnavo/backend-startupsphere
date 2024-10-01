@@ -32,6 +32,26 @@ export class InvestorService {
 		return this.investorRepository.save({ ...existingInvestor, ...investorData });
 	}
 
+	async incrementLike(id: number): Promise<void> {
+		await this.investorRepository.increment({ id }, "likes", 1);
+	}
+
+	async decrementLike(id: number): Promise<void> {
+		await this.investorRepository.decrement({ id }, "likes", 1);
+	}
+
+	async incrementBookmark(id: number): Promise<void> {
+		await this.investorRepository.increment({ id }, "bookmarks", 1);
+	}
+
+	async decrementBookmark(id: number): Promise<void> {
+		await this.investorRepository.decrement({ id }, "bookmarks", 1);
+	}
+
+	async incrementView(id: number): Promise<void> {
+		await this.investorRepository.increment({ id }, "views", 1);
+	}
+
 	async remove(id: number): Promise<void> {
 		await this.investorRepository.delete(id);
 	}
