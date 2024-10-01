@@ -15,7 +15,7 @@ export class View {
 	startup?: Startup;
 
 	@ManyToOne(() => Investor, { onDelete: "CASCADE", nullable: true })
-	@JoinColumn({ name: "startup_id" })
+	@JoinColumn({ name: "investor_id" })
 	investor?: Investor;
 
 	@Column({ type: "timestamp", default: () => "now()" })

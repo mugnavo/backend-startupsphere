@@ -51,6 +51,4 @@ export class Investor {
 
 	@Column({ default: 0 })
 	views: number;
-
-	// TODO should we add likes, bookmarks, views?
 }
