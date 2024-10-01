@@ -6,7 +6,7 @@ export class Report {
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@ManyToOne(() => User)
+	@ManyToOne(() => User, { onDelete: "SET NULL" })
 	@JoinColumn({ name: "user_id" })
 	generated_by: User;
 

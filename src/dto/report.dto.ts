@@ -1,8 +1,6 @@
-import { User } from "src/model/user.model";
-
 export class ReportRequest {
 	// id: number;
-	generatedBy: User;
+	generatedBy: number;
 	name: string;
 	fileType: string;
 	url: string;
