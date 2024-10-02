@@ -16,11 +16,18 @@ export class InvestorService {
 	}
 
 	async findAll(): Promise<Investor[]> {
-		return this.investorRepository.find();
+		return this.investorRepository.find({ relations: ["managerId"] });
 	}
 
 	async findOneById(id: number): Promise<Investor | null> {
-		return this.investorRepository.findOneBy({ id });
+		return this.investorRepository.findOne({
+			where: { id },
+			relations: ["managerId"],
+		});
+	}
+
+	async findAllByManagerId(managerId: number): Promise<Investor[] | null> {
+		return this.investorRepository.find({ where: { managerId: managerId }, relations: ["managerId"] });
 	}
 
 	async update(id: number, investorData: Partial<InvestorRequest>): Promise<Investor> {
