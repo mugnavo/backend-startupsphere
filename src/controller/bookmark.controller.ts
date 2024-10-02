@@ -13,16 +13,28 @@ export class BookmarkController {
 		return this.bookmarkService.findAll();
 	}
 
-	@HttpCode(HttpStatus.OK)
-	@Get("/:userId/:startupId")
-	findOneByUserIdAndStartupId(@Param("userId") userId: number, @Param("startupId") startupId: number) {
-		return this.bookmarkService.findOneByUserIdAndStartupId(userId, startupId);
+	@HttpCode(HttpStatus.CREATED)
+	@Post("/")
+	create(@Body() bookmark: CreateBookmarkRequest) {
+		return this.bookmarkService.create(bookmark);
 	}
 
 	@HttpCode(HttpStatus.OK)
 	@Get("/:userId")
 	findAllByUserId(@Param("userId") userId: number) {
 		return this.bookmarkService.findAllByUserId(userId);
+	}
+
+	@HttpCode(HttpStatus.OK)
+	@Delete("/:userId/startup/:startupId")
+	startupRemove(@Param("userId") userId: number, @Param("startupId") startupId: number) {
+		return this.bookmarkService.startupRemove(userId, startupId);
+	}
+
+	@HttpCode(HttpStatus.OK)
+	@Delete("/:userId/investor/:investorId")
+	investorRemove(@Param("userId") userId: number, @Param("investorId") investorId: number) {
+		return this.bookmarkService.investorRemove(userId, investorId);
 	}
 
 	@Public()
@@ -32,15 +44,22 @@ export class BookmarkController {
 		return this.bookmarkService.findAllByStartupId(startupId);
 	}
 
-	@HttpCode(HttpStatus.CREATED)
-	@Post("/")
-	create(@Body() bookmark: CreateBookmarkRequest) {
-		return this.bookmarkService.create(bookmark);
+	@Public()
+	@HttpCode(HttpStatus.OK)
+	@Get("/:investorId")
+	findAllByInvestorId(@Param("investorId") investorId: number) {
+		return this.bookmarkService.findAllByInvestorId(investorId);
 	}
 
 	@HttpCode(HttpStatus.OK)
-	@Delete("/:userId/:startupId")
-	remove(@Param("userId") userId: number, @Param("startupId") startupId: number) {
-		return this.bookmarkService.remove(userId, startupId);
+	@Get("/:userId/startup/:startupId")
+	findOneByUserIdAndStartupId(@Param("userId") userId: number, @Param("startupId") startupId: number) {
+		return this.bookmarkService.findOneByUserIdAndStartupId(userId, startupId);
+	}
+
+	@HttpCode(HttpStatus.OK)
+	@Get("/:userId/investor/:investorId")
+	findOneByUserIdAndInvestorId(@Param("userId") userId: number, @Param("investorId") investorId: number) {
+		return this.bookmarkService.findOneByUserIdAndInvestorId(userId, investorId);
 	}
 }

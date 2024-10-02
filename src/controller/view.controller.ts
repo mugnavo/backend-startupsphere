@@ -22,9 +22,16 @@ export class ViewController {
 
 	@Public()
 	@HttpCode(HttpStatus.OK)
-	@Get("/:startupId")
+	@Get("/startup/:startupId")
 	findAllByStartupId(@Param("startupId") startupId: number) {
 		return this.viewService.findAllByStartupId(startupId);
+	}
+
+	@Public()
+	@HttpCode(HttpStatus.OK)
+	@Get("/investor/:investorId")
+	findAllByInvestorId(@Param("investorId") investorId: number) {
+		return this.viewService.findAllByInvestorId(investorId);
 	}
 
 	@HttpCode(HttpStatus.OK)
