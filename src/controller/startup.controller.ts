@@ -14,6 +14,12 @@ export class StartupController {
 		return this.startupService.findAll();
 	}
 
+	@HttpCode(HttpStatus.OK)
+	@Get("/manager/:managerId")
+	findAllByManagerId(@Param("managerId") managerId: number) {
+		return this.startupService.findAllByManagerId(managerId);
+	}
+
 	@Public()
 	@HttpCode(HttpStatus.OK)
 	@Get("/:startupId")

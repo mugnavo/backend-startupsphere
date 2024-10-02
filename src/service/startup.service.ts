@@ -16,11 +16,18 @@ export class StartupService {
 	}
 
 	async findAll(): Promise<Startup[]> {
-		return this.startupRepository.find();
+		return this.startupRepository.find({ relations: ["managerId"] });
 	}
 
 	async findOneById(id: number): Promise<Startup | null> {
-		return this.startupRepository.findOneBy({ id });
+		return this.startupRepository.findOne({
+			where: { id },
+			relations: ["managerId"],
+		});
+	}
+
+	async findAllByManagerId(managerId: number): Promise<Startup[] | null> {
+		return this.startupRepository.find({ where: { managerId: managerId }, relations: ["managerId"] });
 	}
 
 	async update(id: number, startupData: Partial<StartupRequest>): Promise<Startup> {
