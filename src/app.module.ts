@@ -11,6 +11,7 @@ import { InvestorController } from "./controller/investor.controller";
 import { LikeController } from "./controller/like.controller";
 import { ReportController } from "./controller/report.controller";
 import { StartupController } from "./controller/startup.controller";
+import { UserController } from "./controller/user.controller";
 import { ViewController } from "./controller/view.controller";
 import { ApiLog } from "./model/apilog.model";
 import { AuditTrail } from "./model/audit.model";
@@ -55,6 +56,7 @@ import { ViewService } from "./service/view.service";
 		ViewController,
 		InvestorController,
 		ReportController,
+		UserController,
 	],
 	providers: [
 		AuthService,
